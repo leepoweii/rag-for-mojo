@@ -1,6 +1,8 @@
 # 夢酒館 RAG 品牌大使 - Web App 展示版本
 
-這是我將原本的 Jupyter Notebook 作業重構成 Web App 的展示版本。透過 Claude Code 開發，使用 Flask + 前端設計，部署到 Zeabur 讓朋友可以直接試用。
+此版本全由 Claude Code 開發。
+
+將原本的 Jupyter Notebook 作業重構成 Web App 的展示版本。使用 Flask + 前端設計，部署到 Zeabur 讓朋友可以直接試用。
 
 ## 功能特色
 
@@ -19,10 +21,11 @@
 - **RAG**: LangChain
 
 ### 前端
-- **設計風格**: 液態金門 - 深色調搭配琥珀金色
+- **設計風格**: 融合金門紅磚建築、酒吧氛圍
+- **色調**: 深棕、琥珀、金色（木造古厝裝潢）
 - **字型**: Noto Serif TC (中文) + Cinzel (英文標題) + Cormorant Garamond (英文內文)
-- **動畫**: CSS 原生動畫 + 打字機效果
-- **特效**: 漸變背景、顆粒紋理、玻璃質感
+- **效果**: 流動漸變背景、顆粒紋理
+- **響應式**: 完美支援桌面和行動裝置
 
 ## 快速開始
 
@@ -173,7 +176,7 @@ app/
 
 **前端樣式在 `static/css/style.css`:**
 - 所有顏色變數定義在 `:root` 區塊
-- 採用「液態金門」美學設計
+- 融合金門紅磚建築與酒吧氛圍設計
 
 **向量資料庫 `faiss_db/`:**
 - 使用 E5 Multilingual embedding
