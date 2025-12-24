@@ -2,7 +2,7 @@
 
 此版本全由 Claude Code 開發。
 
-將原本的 Jupyter Notebook 作業重構成 Web App 的展示版本。使用 Flask + 前端設計，部署到 Zeabur 讓朋友可以直接試用。
+將原本的 Jupyter Notebook 作業重構成 Web App 的展示版本。使用 Flask + 前端設計，部署到 Modal 讓朋友可以直接試用。
 
 ## 功能特色
 

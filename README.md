@@ -2,7 +2,7 @@
 
 > 使用 RAG 技術打造的智能品牌介紹與調酒推薦系統
 
-🔗 **線上示範**: [https://rag-schoolwork.pwlee.xyz](https://rag-schoolwork.pwlee.xyz)
+🔗 **線上示範**: [https://mojo-rag-demo.pwlee.xyz](https://mojo-rag-demo.pwlee.xyz)
 
 ## 📋 專案背景與演進
 
@@ -16,7 +16,7 @@
 
 ### 專案演進：從 Notebook 到 Web App
 - **第一階段**（作業繳交）：使用 Jupyter Notebook + Gradio 快速驗證概念
-- **第二階段**（專案部署）：為了方便部署和對外展示，重新組織專案結構，並透過 Claude Code 開發 Flask Web App，部署到 Zeabur
+- **第二階段**（專案部署）：為了方便部署和對外展示，重新組織專案結構，並透過 Claude Code 開發 Flask Web App，部署到 Modal
 
 目前的 monorepo 結構保留了原始的研究版本（`/notebook`），同時新增展示版本的 Web App（`/app`）
 
