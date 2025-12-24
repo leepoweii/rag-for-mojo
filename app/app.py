@@ -210,11 +210,18 @@ def chat_stream():
                 yield f"data: {json.dumps(stage2_data)}\n\n"
 
                 # Stage 3: Integration Metadata
+                # Build the final prompt that will be sent to LLM
+                final_prompt = PROMPT_TEMPLATE.format(
+                    main_query=main_query,
+                    retrieved_answers=retrieved_answers
+                )
+
                 stage3_data = {
                     'type': 'stage3',
                     'data': {
                         'method': 'LLM integration with brand voice',
-                        'note': 'Combined all retrieved information'
+                        'note': 'Combined all retrieved information',
+                        'final_prompt': final_prompt
                     }
                 }
                 yield f"data: {json.dumps(stage3_data)}\n\n"

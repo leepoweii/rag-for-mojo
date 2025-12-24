@@ -526,13 +526,46 @@ function renderStage3Content(stage3) {
 
     // Note
     const note = document.createElement('div');
+    note.style.marginTop = '10px';
     const noteLabel = document.createElement('strong');
     noteLabel.textContent = 'Note: ';
     note.appendChild(noteLabel);
     note.appendChild(document.createTextNode(stage3.note));
 
-    div.appendChild(method);
-    div.appendChild(note);
+    // Final Prompt (if available)
+    if (stage3.final_prompt) {
+        const promptSection = document.createElement('div');
+        promptSection.style.marginTop = '15px';
+
+        const promptTitle = document.createElement('div');
+        promptTitle.className = 'sub-queries-title';
+        const promptTitleStrong = document.createElement('strong');
+        promptTitleStrong.textContent = 'Final Prompt Sent to LLM:';
+        promptTitle.appendChild(promptTitleStrong);
+
+        const promptContent = document.createElement('pre');
+        promptContent.style.background = 'rgba(0, 0, 0, 0.2)';
+        promptContent.style.padding = '12px';
+        promptContent.style.borderRadius = '8px';
+        promptContent.style.whiteSpace = 'pre-wrap';
+        promptContent.style.wordWrap = 'break-word';
+        promptContent.style.fontSize = '0.85em';
+        promptContent.style.lineHeight = '1.5';
+        promptContent.style.maxHeight = '400px';
+        promptContent.style.overflow = 'auto';
+        promptContent.style.border = '1px solid rgba(201, 169, 97, 0.2)';
+        promptContent.textContent = stage3.final_prompt;
+
+        promptSection.appendChild(promptTitle);
+        promptSection.appendChild(promptContent);
+        div.appendChild(method);
+        div.appendChild(note);
+        div.appendChild(promptSection);
+    } else {
+        div.appendChild(method);
+        div.appendChild(note);
+    }
+
     return div;
 }
 
