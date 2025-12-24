@@ -82,49 +82,70 @@ PORT=8000 python app.py
 
 ⚠️ **macOS 用戶注意**: 系統的 AirPlay Receiver 預設佔用 port 5000，建議使用 port 8000，或前往「系統設定」→「一般」→「隔空播放接收器」關閉該功能。
 
-## 部署到 Zeabur
+## 🚢 部署到 Modal
 
-### 方法一：透過 GitHub 部署（推薦）
+本專案使用 Modal 進行 serverless 部署。
 
-1. **將 /app 資料夾推送到 GitHub**
-   ```bash
-   cd app
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin <your-repo-url>
-   git push -u origin main
-   ```
+### 為何選擇 Modal？
 
-2. **在 Zeabur 建立專案**
-   - 登入 [Zeabur](https://zeabur.com)
-   - 點擊「Create Project」
-   - 選擇你的 GitHub repository
+- **成本優勢**: PyTorch/CUDA 工作負載成本更低
+- **自動擴展**: 流量高峰自動擴展，空閒時縮減至零
+- **按使用計費**: 只需為實際使用的計算時間付費
+- **ML 最佳化**: 專為機器學習工作負載設計
 
-3. **設定環境變數**
-   在 Zeabur 專案設定中添加以下環境變數：
-   - `OPENAI_API_KEY`: 你的 OpenAI API Key
-   - `OPENAI_MODEL`: `gpt-4.1-nano`
-   - `EMBEDDING_MODEL`: `intfloat/multilingual-e5-small`
-   - `SECRET_KEY`: 隨機生成的密鑰
+### 部署步驟
 
-4. **部署**
-   - Zeabur 會自動偵測 Python 專案並部署
-   - 等待建置完成後即可訪問
+📖 **詳細教學**: [MODAL_DEPLOYMENT.md](../MODAL_DEPLOYMENT.md)
 
-### 方法二：使用 Zeabur CLI
+**快速部署：**
 
 ```bash
-# 安裝 Zeabur CLI
-npm install -g @zeabur/cli
+# 1. 安裝並認證 Modal CLI
+pip install modal
+modal setup
 
-# 登入
-zeabur login
+# 2. 建立 Secret
+modal secret create portfolio-rag-mojo \
+  OPENAI_API_KEY=your-key \
+  OPENAI_MODEL=gpt-4o-mini \
+  EMBEDDING_MODEL=intfloat/multilingual-e5-small
 
-# 部署
-zeabur deploy
+# 3. 上傳 FAISS 資料庫（從專案根目錄）
+cd ..
+modal run upload_faiss_to_modal.py
+
+# 4. 部署應用
+modal deploy modal_app.py
 ```
+
+### 更新部署
+
+**程式碼更新：**
+```bash
+modal deploy modal_app.py
+```
+
+**FAISS 資料庫更新：**
+```bash
+modal run upload_faiss_to_modal.py
+modal deploy modal_app.py
+```
+
+### 監控
+
+```bash
+# 即時日誌
+modal app logs mojo-rag-brand-ambassador
+
+# Dashboard
+# https://modal.com/apps
+```
+
+### 成本
+
+- 低流量：~$1-2/月
+- 中流量：~$10-15/月
+- 含 $10/月免費額度
 
 ## 專案結構
 
@@ -153,7 +174,7 @@ app/
 | `OPENAI_MODEL` | 使用的 OpenAI 模型 | `gpt-4.1-nano` |
 | `EMBEDDING_MODEL` | Embedding 模型 | `intfloat/multilingual-e5-small` |
 | `SECRET_KEY` | Flask 密鑰 | 自動生成 |
-| `PORT` | 服務埠號 | `5000` (Zeabur 自動設定) |
+| `PORT` | 服務埠號 | `5000` (本機開發用) |
 
 ## 使用說明
 

@@ -62,3 +62,10 @@ uv.lock
 venv/
 ENV/
 env/
+
+# Modal
+.modal/
+
+# Zeabur
+.zeabur/
+zbpack.json

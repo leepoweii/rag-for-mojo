@@ -225,14 +225,57 @@ class CustomE5Embedding(HuggingFaceEmbeddings):
 
 ## 🚢 部署指南
 
-### 部署 App 版本到 Zeabur
+本專案使用 **Modal** 進行 serverless 部署，享受以下優勢：
 
-1. 將 `/app` 資料夾推送到 GitHub
-2. 在 Zeabur 連接該 repository
-3. 設定環境變數（OPENAI_API_KEY 等）
-4. 自動部署完成
+- ✅ 自動擴展與縮減至零（空閒時無成本）
+- ✅ 按使用量計費，比傳統 PaaS 更經濟
+- ✅ 針對 ML/AI 工作負載優化
+- ✅ 內建持久化儲存（FAISS 資料庫）
 
-詳細步驟請參考 [app/README.md](./app/README.md)
+### 線上展示
+
+🔗 **Demo URL**: [mojo-rag-demo.pwlee.xyz](https://mojo-rag-demo.pwlee.xyz)
+
+*使用 Cloudflare Workers 轉址至 Modal 部署*
+
+### 快速部署（5分鐘）
+
+```bash
+# 1. 安裝 Modal CLI 並認證
+pip install modal
+modal setup
+
+# 2. 建立 Modal Secret
+modal secret create portfolio-rag-mojo \
+  OPENAI_API_KEY=your-key-here \
+  OPENAI_MODEL=gpt-4o-mini \
+  EMBEDDING_MODEL=intfloat/multilingual-e5-small
+
+# 3. 上傳 FAISS 資料庫
+modal run upload_faiss_to_modal.py
+
+# 4. 部署應用程式
+modal deploy modal_app.py
+```
+
+📖 **完整部署教學**: [MODAL_DEPLOYMENT.md](./MODAL_DEPLOYMENT.md)
+
+### 為何選擇 Modal？
+
+**技術考量：**
+- PyTorch/CUDA 工作負載在傳統 PaaS 成本高
+- Serverless 架構支援縮減至零，空閒時無成本
+- 針對 ML/AI 應用提供最佳化支援
+
+**成本預估：**
+- 低流量（100 請求/日）：~$1-2/月
+- 中流量（1000 請求/日）：~$10-15/月
+- 包含每月 $10 免費額度
+
+## 📜 部署歷史
+
+- **2024年12月**: 遷移至 Modal（Serverless 部署）
+- **2024年11月**: 初始專案建立
 
 ## 📚 使用示範
 

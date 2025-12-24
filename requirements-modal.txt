@@ -1,0 +1,5 @@
+# Modal deployment - development dependencies
+# This file is for local development only
+# The container uses app/requirements.txt
+
+modal>=0.64.0
