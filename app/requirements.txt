@@ -52,6 +52,8 @@ fsspec==2025.12.0
     # via
     #   huggingface-hub
     #   torch
+gunicorn==23.0.0
+    # via mojo-rag-app (pyproject.toml)
 h11==0.16.0
     # via httpcore
 hf-xet==1.2.0
@@ -157,6 +159,7 @@ ormsgpack==1.12.1
 packaging==25.0
     # via
     #   faiss-cpu
+    #   gunicorn
     #   huggingface-hub
     #   langchain-core
     #   langsmith
