@@ -14,7 +14,7 @@
 
 ### 後端
 - **框架**: Flask 3.0+
-- **LLM**: OpenAI GPT-4o-mini
+- **LLM**: OpenAI GPT-4.1 Nano
 - **向量檢索**: FAISS + E5 Embedding
 - **RAG**: LangChain
 

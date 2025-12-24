@@ -146,7 +146,7 @@ powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
 
 ### 技術棧
 
-- **LLM**: OpenAI GPT-4o-mini
+- **LLM**: OpenAI GPT-4.1 Nano
 - **向量資料庫**: FAISS
 - **Embedding**: E5 Multilingual (intfloat/multilingual-e5-small)
 - **框架**: LangChain
