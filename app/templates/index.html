@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>夢酒館 MOJO | 品牌大使</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;700&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- DOMPurify for safe HTML rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.8/dist/purify.min.js"></script>
+</head>
+<body>
+    <!-- 背景裝飾層 -->
+    <div class="background-layer"></div>
+    <div class="grain-overlay"></div>
+
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 頭部品牌區 -->
+        <header class="brand-header">
+            <div class="brand-mark">
+                <div class="brand-icon">◇</div>
+                <h1 class="brand-name">
+                    <span class="brand-cn">夢酒館</span>
+                    <span class="brand-divider">·</span>
+                    <span class="brand-en">MOJO</span>
+                </h1>
+            </div>
+            <p class="brand-tagline">金門 · 調酒</p>
+        </header>
+
+        <!-- 歡迎訊息卡片 -->
+        <div class="welcome-card">
+            <div class="welcome-icon">🍸</div>
+            <h2 class="welcome-title">歡迎來到夢酒館</h2>
+            <p class="welcome-text">
+                我是品牌大使，很高興為您介紹我們的故事。<br>
+                您可以詢問關於：
+            </p>
+            <div class="topic-tags">
+                <span class="topic-tag">調酒推薦</span>
+                <span class="topic-tag">品牌故事</span>
+                <span class="topic-tag">媒體報導</span>
+            </div>
+        </div>
+
+        <!-- 聊天訊息區域 -->
+        <div class="chat-container" id="chatContainer">
+            <!-- 訊息將動態插入這裡 -->
+        </div>
+
+        <!-- 輸入區域 -->
+        <div class="input-container">
+            <form id="chatForm" class="chat-form">
+                <div class="input-wrapper">
+                    <textarea
+                        id="messageInput"
+                        class="message-input"
+                        placeholder="請輸入您對夢酒館的好奇..."
+                        rows="1"></textarea>
+                    <button type="submit" class="send-button" id="sendButton">
+                        <svg class="send-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+            <div class="input-hint">按 Enter 發送，Shift + Enter 換行</div>
+        </div>
+    </div>
+
+    <!-- 頁尾 -->
+    <footer class="page-footer">
+        <p>© 2025 夢酒館 MOJO · Kinmen, Taiwan</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

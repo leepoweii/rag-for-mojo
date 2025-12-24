@@ -1,0 +1,821 @@
+/* ==========================================
+   夢酒館 MOJO 品牌大使 - 主樣式表
+   設計理念：液態金門 - 融合金門紅磚、高粱琥珀、酒吧光影
+   ========================================== */
+
+:root {
+    /* 主色調 - 威士忌與高粱的色澤 */
+    --amber-dark: #2a1810;
+    --amber-deep: #3d2414;
+    --amber-rich: #6b4423;
+    --amber-warm: #a0622f;
+    --amber-gold: #d4a574;
+    --amber-light: #f4e4d0;
+
+    /* 金色點綴 */
+    --gold-accent: #c9a961;
+    --gold-bright: #e6c990;
+    --gold-shimmer: #f5e6c8;
+
+    /* 中性色 */
+    --stone-dark: #1a1512;
+    --stone-medium: #4a3f35;
+    --text-primary: #f4e4d0;
+    --text-secondary: #c9b89a;
+    --text-muted: #8a7d6f;
+
+    /* 效果 */
+    --glass-blur: blur(20px);
+    --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --shadow-strong: 0 12px 48px rgba(0, 0, 0, 0.5);
+
+    /* 字型 */
+    --font-cn: 'Noto Serif TC', serif;
+    --font-en-display: 'Cinzel', serif;
+    --font-en-body: 'Cormorant Garamond', serif;
+
+    /* 動畫 */
+    --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ==========================================
+   全局設置
+   ========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-cn);
+    background: var(--stone-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ==========================================
+   背景層 - 液態漸變效果
+   ========================================== */
+
+.background-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background:
+        radial-gradient(ellipse at 20% 30%, rgba(212, 165, 116, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 70%, rgba(160, 98, 47, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(61, 36, 20, 0.4) 0%, transparent 70%),
+        linear-gradient(135deg, var(--amber-dark) 0%, var(--stone-dark) 50%, var(--amber-deep) 100%);
+    animation: backgroundFlow 20s ease-in-out infinite alternate;
+}
+
+@keyframes backgroundFlow {
+    0% {
+        background-position: 0% 0%, 100% 100%, 50% 50%;
+    }
+    100% {
+        background-position: 100% 100%, 0% 0%, 60% 40%;
+    }
+}
+
+/* 顆粒紋理疊加 */
+.grain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    pointer-events: none;
+}
+
+/* ==========================================
+   主容器
+   ========================================== */
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px 120px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ==========================================
+   品牌頭部
+   ========================================== */
+
+.brand-header {
+    text-align: center;
+    margin-bottom: 48px;
+    animation: fadeInDown 0.8s var(--transition-smooth);
+}
+
+.brand-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.brand-icon {
+    font-size: 32px;
+    color: var(--gold-accent);
+    animation: rotate 20s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.brand-name {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    font-weight: 700;
+}
+
+.brand-cn {
+    font-family: var(--font-cn);
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    background: linear-gradient(135deg, var(--gold-bright) 0%, var(--amber-gold) 50%, var(--gold-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.brand-divider {
+    font-size: 28px;
+    color: var(--gold-accent);
+    opacity: 0.6;
+}
+
+.brand-en {
+    font-family: var(--font-en-display);
+    font-size: 32px;
+    letter-spacing: 0.15em;
+    color: var(--text-secondary);
+}
+
+.brand-tagline {
+    font-family: var(--font-cn);
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+/* ==========================================
+   歡迎卡片
+   ========================================== */
+
+.welcome-card {
+    background: linear-gradient(135deg,
+        rgba(61, 36, 20, 0.6) 0%,
+        rgba(42, 24, 16, 0.7) 100%);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid rgba(201, 169, 97, 0.2);
+    border-radius: 24px;
+    padding: 40px 36px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow-soft);
+    animation: fadeInUp 0.8s var(--transition-smooth) 0.2s backwards;
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 40%,
+        rgba(212, 165, 116, 0.08) 0%,
+        transparent 60%);
+    pointer-events: none;
+}
+
+.welcome-icon {
+    font-size: 48px;
+    text-align: center;
+    margin-bottom: 20px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.welcome-title {
+    font-family: var(--font-cn);
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 16px;
+    color: var(--gold-bright);
+}
+
+.welcome-text {
+    font-family: var(--font-cn);
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.8;
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+}
+
+.topic-tags {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.topic-tag {
+    padding: 10px 20px;
+    background: rgba(201, 169, 97, 0.15);
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gold-bright);
+    transition: all 0.3s var(--transition-smooth);
+    cursor: default;
+}
+
+.topic-tag:hover {
+    background: rgba(201, 169, 97, 0.25);
+    border-color: var(--gold-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(201, 169, 97, 0.2);
+}
+
+/* ==========================================
+   聊天容器
+   ========================================== */
+
+.chat-container {
+    min-height: 400px;
+    max-height: 600px;
+    overflow-y: auto;
+    padding: 20px 0;
+    scroll-behavior: smooth;
+}
+
+.chat-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-container::-webkit-scrollbar-track {
+    background: rgba(26, 21, 18, 0.3);
+    border-radius: 4px;
+}
+
+.chat-container::-webkit-scrollbar-thumb {
+    background: rgba(201, 169, 97, 0.3);
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.chat-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(201, 169, 97, 0.5);
+}
+
+/* 訊息泡泡 */
+.message {
+    display: flex;
+    margin-bottom: 24px;
+    animation: messageSlideIn 0.4s var(--transition-smooth);
+}
+
+@keyframes messageSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message-content {
+    max-width: 75%;
+    padding: 18px 24px;
+    border-radius: 20px;
+    line-height: 1.7;
+    font-size: 15px;
+    position: relative;
+}
+
+/* 使用者訊息 */
+.message.user {
+    justify-content: flex-end;
+}
+
+.message.user .message-content {
+    background: linear-gradient(135deg,
+        rgba(160, 98, 47, 0.4) 0%,
+        rgba(107, 68, 35, 0.5) 100%);
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    color: var(--text-primary);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* AI 訊息 */
+.message.assistant {
+    justify-content: flex-start;
+}
+
+.message.assistant .message-content {
+    background: linear-gradient(135deg,
+        rgba(61, 36, 20, 0.5) 0%,
+        rgba(42, 24, 16, 0.6) 100%);
+    border: 1px solid rgba(201, 169, 97, 0.25);
+    color: var(--text-secondary);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+/* Markdown 樣式 */
+.message-content a {
+    color: var(--gold-bright);
+    text-decoration: underline;
+    transition: color 0.3s var(--transition-smooth);
+}
+
+.message-content a:hover {
+    color: var(--gold-shimmer);
+}
+
+.message-content strong {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.message-content em {
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+/* Typing Indicator */
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 20px !important;
+}
+
+.typing-indicator span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold-accent);
+    animation: typingDot 1.4s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typingDot {
+    0%, 60%, 100% {
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+    30% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* ==========================================
+   Thinking Blocks - Chain of Thoughts
+   ========================================== */
+
+.thinking-message {
+    width: 100%;
+}
+
+.thinking-content {
+    max-width: 90%;
+    background: linear-gradient(135deg,
+        rgba(61, 36, 20, 0.4) 0%,
+        rgba(42, 24, 16, 0.5) 100%);
+    border: 1px solid rgba(201, 169, 97, 0.2);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+.thinking-stage {
+    margin-bottom: 16px;
+    border: 1px solid rgba(201, 169, 97, 0.15);
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(26, 21, 18, 0.3);
+    transition: all 0.3s var(--transition-smooth);
+}
+
+.thinking-stage:hover {
+    border-color: rgba(201, 169, 97, 0.3);
+    box-shadow: 0 2px 8px rgba(201, 169, 97, 0.1);
+}
+
+.thinking-stage:last-child {
+    margin-bottom: 0;
+}
+
+.thinking-stage-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    background: linear-gradient(135deg,
+        rgba(160, 98, 47, 0.2) 0%,
+        rgba(107, 68, 35, 0.25) 100%);
+    cursor: pointer;
+    transition: all 0.3s var(--transition-smooth);
+    user-select: none;
+}
+
+.thinking-stage-header:hover {
+    background: linear-gradient(135deg,
+        rgba(160, 98, 47, 0.3) 0%,
+        rgba(107, 68, 35, 0.35) 100%);
+}
+
+.thinking-stage-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.thinking-stage-title {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gold-bright);
+    letter-spacing: 0.02em;
+}
+
+.thinking-stage-toggle {
+    font-size: 12px;
+    color: var(--text-muted);
+    transition: transform 0.3s var(--transition-smooth);
+}
+
+.thinking-stage-body {
+    transition: max-height 0.4s var(--transition-smooth);
+    overflow: hidden;
+}
+
+.stage-content {
+    padding: 16px 18px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+/* Stage 1: Query Decomposition */
+.original-query {
+    margin-bottom: 16px;
+    padding: 12px;
+    background: rgba(201, 169, 97, 0.08);
+    border-left: 3px solid var(--gold-accent);
+    border-radius: 6px;
+}
+
+.sub-queries-title {
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.sub-queries-list {
+    margin: 0;
+    padding-left: 24px;
+    list-style-type: decimal;
+}
+
+.sub-queries-list li {
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+}
+
+.sub-queries-list li:last-child {
+    margin-bottom: 0;
+}
+
+/* Stage 2: Individual Retrieval */
+.retrieval-block {
+    margin-bottom: 20px;
+    padding: 12px;
+    background: rgba(26, 21, 18, 0.3);
+    border-radius: 8px;
+    border-left: 3px solid var(--amber-warm);
+}
+
+.retrieval-block:last-child {
+    margin-bottom: 0;
+}
+
+.retrieval-query {
+    margin-bottom: 12px;
+    color: var(--gold-bright);
+}
+
+.chunks-title {
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.chunks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.chunk-item {
+    padding: 10px 12px;
+    background: rgba(61, 36, 20, 0.3);
+    border-radius: 6px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    border-left: 2px solid rgba(201, 169, 97, 0.2);
+}
+
+.chunk-number {
+    display: inline-block;
+    min-width: 20px;
+    font-weight: 600;
+    color: var(--gold-accent);
+}
+
+/* ==========================================
+   輸入區域
+   ========================================== */
+
+.input-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top,
+        var(--stone-dark) 0%,
+        var(--stone-dark) 70%,
+        rgba(26, 21, 18, 0.95) 90%,
+        transparent 100%);
+    padding: 24px;
+    z-index: 100;
+    animation: fadeInUp 0.6s var(--transition-smooth);
+}
+
+.chat-form {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.input-wrapper {
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+    background: linear-gradient(135deg,
+        rgba(61, 36, 20, 0.7) 0%,
+        rgba(42, 24, 16, 0.8) 100%);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    border-radius: 24px;
+    padding: 16px 20px;
+    box-shadow: var(--shadow-strong);
+    transition: all 0.3s var(--transition-smooth);
+}
+
+.input-wrapper:focus-within {
+    border-color: var(--gold-accent);
+    box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.15), var(--shadow-strong);
+}
+
+.message-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: var(--font-cn);
+    font-size: 16px;
+    color: var(--text-primary);
+    resize: none;
+    max-height: 120px;
+    min-height: 24px;
+    line-height: 1.5;
+}
+
+.message-input::placeholder {
+    color: var(--text-muted);
+}
+
+.send-button {
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--amber-warm) 0%, var(--amber-rich) 100%);
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s var(--transition-smooth);
+    flex-shrink: 0;
+}
+
+.send-button:hover:not(:disabled) {
+    background: linear-gradient(135deg, var(--amber-gold) 0%, var(--amber-warm) 100%);
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(212, 165, 116, 0.4);
+}
+
+.send-button:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.send-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.send-icon {
+    width: 22px;
+    height: 22px;
+}
+
+.input-hint {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 12px;
+    font-family: var(--font-cn);
+}
+
+/* ==========================================
+   頁尾
+   ========================================== */
+
+.page-footer {
+    text-align: center;
+    padding: 32px 24px;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-family: var(--font-en-body);
+    letter-spacing: 0.05em;
+}
+
+/* ==========================================
+   動畫定義
+   ========================================== */
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================
+   響應式設計
+   ========================================== */
+
+@media (max-width: 768px) {
+    .container {
+        padding: 24px 16px 140px;
+    }
+
+    .brand-cn {
+        font-size: 32px;
+    }
+
+    .brand-en {
+        font-size: 24px;
+    }
+
+    .welcome-card {
+        padding: 32px 24px;
+    }
+
+    .welcome-title {
+        font-size: 24px;
+    }
+
+    .message-content {
+        max-width: 85%;
+        padding: 14px 18px;
+        font-size: 14px;
+    }
+
+    .input-wrapper {
+        padding: 12px 16px;
+    }
+
+    .send-button {
+        width: 44px;
+        height: 44px;
+    }
+
+    /* Thinking blocks responsive */
+    .thinking-content {
+        max-width: 95%;
+        padding: 16px;
+    }
+
+    .thinking-stage-header {
+        padding: 12px 14px;
+    }
+
+    .thinking-stage-title {
+        font-size: 14px;
+    }
+
+    .stage-content {
+        padding: 12px 14px;
+        font-size: 13px;
+    }
+
+    .chunk-item {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .brand-mark {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .brand-name {
+        flex-direction: column;
+        gap: 4px;
+        align-items: center;
+    }
+
+    .brand-divider {
+        display: none;
+    }
+
+    .topic-tags {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .topic-tag {
+        text-align: center;
+    }
+}
