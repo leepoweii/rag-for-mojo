@@ -17,7 +17,7 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'mojo-dream-bar-secret-key')
 
 # OpenAI 設定
 api_key = os.getenv("OPENAI_API_KEY")
-model = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+model = os.getenv("OPENAI_MODEL", "gpt-4.1-nano")
 embedding_model_name = os.getenv("EMBEDDING_MODEL", "intfloat/multilingual-e5-small")
 
 client = OpenAI(api_key=api_key)
@@ -264,5 +264,5 @@ def chat_stream():
 
 
 if __name__ == '__main__':
-    port = int(os.getenv('PORT', 5000))
+    port = int(os.getenv('PORT', 8080))
     app.run(host='0.0.0.0', port=port, debug=False)

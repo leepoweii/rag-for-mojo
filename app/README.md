@@ -1,6 +1,6 @@
-# 夢酒館 RAG 品牌大使 - Web 應用程式
+# 夢酒館 RAG 品牌大使 - Web App 展示版本
 
-這是夢酒館 (MOJO) 的 RAG 品牌大使 Web 應用程式，使用 Flask + 精美前端設計，可以部署到 Zeabur 或其他雲端平台。
+這是我將原本的 Jupyter Notebook 作業重構成 Web App 的展示版本。透過 Claude Code 開發，使用 Flask + 前端設計，部署到 Zeabur 讓朋友可以直接試用。
 
 ## 功能特色
 
@@ -102,7 +102,7 @@ PORT=8000 python app.py
 3. **設定環境變數**
    在 Zeabur 專案設定中添加以下環境變數：
    - `OPENAI_API_KEY`: 你的 OpenAI API Key
-   - `OPENAI_MODEL`: `gpt-4o-mini`
+   - `OPENAI_MODEL`: `gpt-4.1-nano`
    - `EMBEDDING_MODEL`: `intfloat/multilingual-e5-small`
    - `SECRET_KEY`: 隨機生成的密鑰
 
@@ -147,7 +147,7 @@ app/
 | 變數名稱 | 說明 | 預設值 |
 |---------|------|-------|
 | `OPENAI_API_KEY` | OpenAI API 金鑰 | 必填 |
-| `OPENAI_MODEL` | 使用的 OpenAI 模型 | `gpt-4o-mini` |
+| `OPENAI_MODEL` | 使用的 OpenAI 模型 | `gpt-4.1-nano` |
 | `EMBEDDING_MODEL` | Embedding 模型 | `intfloat/multilingual-e5-small` |
 | `SECRET_KEY` | Flask 密鑰 | 自動生成 |
 | `PORT` | 服務埠號 | `5000` (Zeabur 自動設定) |
@@ -162,45 +162,29 @@ app/
 3. 按 Enter 或點擊發送按鈕
 4. 品牌大使會以專業且溫暖的語氣回答您
 
-## 開發說明
+## 技術細節參考
 
-### 修改樣式
+如果你想了解實作細節：
 
-編輯 `static/css/style.css` 檔案，所有顏色變數都定義在 `:root` 區塊中。
+**主要程式碼在 `app.py`:**
+- `separate_queries()`: 語意拆解邏輯
+- `retrieve_answers()`: 向量檢索流程
+- `integrate_answers()`: 答案整合機制
 
-### 修改 RAG 邏輯
+**前端樣式在 `static/css/style.css`:**
+- 所有顏色變數定義在 `:root` 區塊
+- 採用「液態金門」美學設計
 
-主要邏輯在 `app.py` 中：
-- `separate_queries()`: 語意拆解
-- `retrieve_answers()`: 向量檢索
-- `integrate_answers()`: 整合回答
+**向量資料庫 `faiss_db/`:**
+- 使用 E5 Multilingual embedding
+- 基於夢酒館品牌資料建立
 
-### 更新向量資料庫
+## 關於這個專案
 
-如需更新知識庫內容：
-1. 修改原始資料
-2. 重新生成 FAISS 向量資料庫
-3. 替換 `faiss_db/` 資料夾
+這是我的學校作業展示版本，透過 Claude Code 開發。歡迎參考程式碼，但請注意這是為了作業展示而非生產使用。
 
-## 問題排解
+**線上試用**: [https://rag-schoolwork.pwlee.xyz](https://rag-schoolwork.pwlee.xyz)
 
-### 模型載入錯誤
-- 確認 `faiss_db/` 資料夾已正確複製
-- 檢查 Embedding 模型是否正確安裝
+---
 
-### API 錯誤
-- 確認 OpenAI API Key 是否正確
-- 檢查 API 額度是否足夠
-
-### 部署失敗
-- 確認 `pyproject.toml` 格式正確
-- 檢查所有依賴是否已列出
-
-## 授權
-
-本專案為夢酒館專屬應用程式。
-
-## 聯絡方式
-
-- Email: contact@mojokm.com
-- 原始專案: [rag-for-mojo](https://github.com/leepoweii/rag-homework)
+夢酒館 MOJO | 金門, Taiwan
