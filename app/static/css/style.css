@@ -1,6 +1,7 @@
 /* ==========================================
    夢酒館 MOJO 品牌大使 - 主樣式表
-   設計理念：液態金門 - 融合金門紅磚、高粱琥珀、酒吧光影
+   設計理念：融合金門紅磚建築、酒吧氛圍
+   色調：深棕、琥珀、金色（木造古厝裝潢）
    ========================================== */
 
 :root {
@@ -608,7 +609,7 @@ body {
 .input-wrapper {
     display: flex;
     gap: 12px;
-    align-items: flex-end;
+    align-items: center;
     background: linear-gradient(135deg,
         rgba(61, 36, 20, 0.7) 0%,
         rgba(42, 24, 16, 0.8) 100%);
@@ -637,6 +638,10 @@ body {
     max-height: 120px;
     min-height: 24px;
     line-height: 1.5;
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
+    display: block;
 }
 
 .message-input::placeholder {
